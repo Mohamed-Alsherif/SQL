@@ -1,0 +1,7 @@
+/* Query 3 */
+-- Show the total number of tracks in each playlist
+SELECT playlist.Name as 'Name of Playlist',
+       count(PlaylistTrack.playlistid) as 'Count of Track' 
+FROM PlaylistTrack
+LEFT JOIN playlist on playlist.playlistid = PlaylistTrack.playlistid
+GROUP BY playlist.name;

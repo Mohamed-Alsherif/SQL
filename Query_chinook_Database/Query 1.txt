@@ -1,0 +1,11 @@
+/* Query 1 */
+-- Which two sales agent made the most in sales in 2011 descending?  
+SELECT employee.firstName || " " || employee.lastName as 'The TOP 2 Sales agent in 2011',
+       sum(Invoice.total) as total_invoice
+FROM Invoice
+JOIN customer ON customer.customerid = Invoice.customerid
+JOIN employee ON employee.employeeid = customer.supportrepid
+WHERE Invoice.invoiceDate like '2011%'
+GROUP BY employee.Employeeid
+ORDER BY sum(Invoice.total) desc
+limit 2;

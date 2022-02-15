@@ -1,0 +1,10 @@
+/* Query 4 */
+-- shows the top 5 best selling artists.
+SELECT Artist.Name 'The artist', sum(InvoiceLine.UnitPrice) 'Total' 
+FROM InvoiceLine, Track, Album , Artist
+WHERE InvoiceLine.TrackId = Track.Trackid 
+	  AND Album.AlbumId = Track.AlbumId 
+	  AND Artist.ArtistId = Album.ArtistId
+GROUP BY Artist.Name
+ORDER BY COUNT(Artist.ArtistId) DESC
+LIMIT 5;

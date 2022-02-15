@@ -1,0 +1,10 @@
+/* Query 2 */
+-- What are the most five purchased tracks of 2011?
+SELECT track.name, count(track.name) purchaseCount
+FROM track 
+JOIN invoiceline ON invoiceline.trackid = track.trackid
+JOIN invoice on invoiceline.invoiceid = invoice.invoiceid
+WHERE strftime('%Y', invoice.invoicedate) = "2011"
+GROUP BY track.name
+ORDER BY purchaseCount DESC
+limit 5;
